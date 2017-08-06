@@ -50,3 +50,23 @@ body{
     transition-timing-function: cubic-bezier(0.42, 0, 0, 4.05);
 
 }
+
+
+
+
+
+.flip-clock{
+    display: flex;
+}
+
+.flip{
+    width: 100px;
+    height: 200px;
+    background-color: black;
+    border-radius: 15%;
+    margin: 0 5px;
+}
+
+.time{
+    color: white;
+}

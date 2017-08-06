@@ -1,25 +1,34 @@
-const secondHand = document.querySelector('.second-hand');
-const minuteHand = document.querySelector('.minute-hand');
-const hoursHand = document.querySelector('.hour-hand');
+var hourTens = document.querySelector('.hour-tens');
+var hourOnes = document.querySelector('.hour-ones');
+var minuteTens = document.querySelector('.minute-tens');
+var minuteOnes = document.querySelector('.minute-ones');
 
 
 function setDate(){
     const now = new Date();
     
-    const seconds = now.getSeconds();
-    const secondsDegrees = ((seconds/60) * 360) + 90;
-    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
     
-    const mins = now.getMinutes();
-    const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
-    minuteHand.style.transform = `rotate(${minsDegrees}deg)`;
+    var mins = now.getMinutes();
+    var minString = mins.toString();
+    minsArray = minString.split("");
+    var minTensNum = `<p class="time minTensNum">${minsArray[0]}</p>`;
+    var minOnesNum = `<p class="time minOnesNum">${minsArray[1]}</p>`;
+    minuteTens.innerHTML = minTensNum;
+    minuteOnes.innerHTML = minOnesNum;
+
     
-    const hour = now.getHours();
-    const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
-    hoursHand.style.transform = `rotate(${hourDegrees}deg)`;
+    var hour = now.getHours();
+    var hourString = hour.toString();
+    if(hour > 12){
+        hour = hour - 12;
+        hourString = hour.toString();
+        hourString = "0" + hourString;
+    }
+
+    console.log(hourString);
 
 }
 
-setInterval(setDate, 1000);
+setInterval(setDate, 60000);
 
 setDate();
